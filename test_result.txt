@@ -1,0 +1,80 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.10, pytest-7.3.1, pluggy-1.0.0
+rootdir: /home/seuronao/Documents/Triangle Classifier-04-24-2023-04-46-29/arturgarcia13
+collected 12 items
+
+test_main.py ....FF......                                                [100%]
+
+=================================== FAILURES ===================================
+_________________________ test_isósceles[test_input1] __________________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f065684ceb0>
+test_input = []
+
+    @pytest.mark.parametrize(
+        "test_input",
+        [
+            ["2", "2", "3"],
+            ["3", "2", "2"],
+            ["2", "3", "2"],
+        ],
+    )
+    def test_isósceles(monkeypatch: MonkeyPatch, test_input: str):
+        mocked_input = lambda prompt="": test_input.pop(0)
+        mocked_stdout = io.StringIO()
+    
+        with monkeypatch.context() as m:
+            m.setattr(builtins, "input", mocked_input)
+            m.setattr(sys, "stdout", mocked_stdout)
+    
+            sys.modules.pop("main", None)
+            importlib.import_module(name="main", package="files")
+    
+        assert "Não é um triângulo" not in mocked_stdout.getvalue().strip()
+        assert "Equilátero" not in mocked_stdout.getvalue().strip()
+>       assert "Isósceles" in mocked_stdout.getvalue().strip()
+E       AssertionError: assert 'Isósceles' in ''
+E        +  where '' = <built-in method strip of str object at 0x7f0657924030>()
+E        +    where <built-in method strip of str object at 0x7f0657924030> = ''.strip
+E        +      where '' = <built-in method getvalue of _io.StringIO object at 0x7f0656881cf0>()
+E        +        where <built-in method getvalue of _io.StringIO object at 0x7f0656881cf0> = <_io.StringIO object at 0x7f0656881cf0>.getvalue
+
+test_main.py:56: AssertionError
+_________________________ test_isósceles[test_input2] __________________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f065683f7f0>
+test_input = []
+
+    @pytest.mark.parametrize(
+        "test_input",
+        [
+            ["2", "2", "3"],
+            ["3", "2", "2"],
+            ["2", "3", "2"],
+        ],
+    )
+    def test_isósceles(monkeypatch: MonkeyPatch, test_input: str):
+        mocked_input = lambda prompt="": test_input.pop(0)
+        mocked_stdout = io.StringIO()
+    
+        with monkeypatch.context() as m:
+            m.setattr(builtins, "input", mocked_input)
+            m.setattr(sys, "stdout", mocked_stdout)
+    
+            sys.modules.pop("main", None)
+            importlib.import_module(name="main", package="files")
+    
+        assert "Não é um triângulo" not in mocked_stdout.getvalue().strip()
+        assert "Equilátero" not in mocked_stdout.getvalue().strip()
+>       assert "Isósceles" in mocked_stdout.getvalue().strip()
+E       AssertionError: assert 'Isósceles' in ''
+E        +  where '' = <built-in method strip of str object at 0x7f0657924030>()
+E        +    where <built-in method strip of str object at 0x7f0657924030> = ''.strip
+E        +      where '' = <built-in method getvalue of _io.StringIO object at 0x7f06568829e0>()
+E        +        where <built-in method getvalue of _io.StringIO object at 0x7f06568829e0> = <_io.StringIO object at 0x7f06568829e0>.getvalue
+
+test_main.py:56: AssertionError
+=========================== short test summary info ============================
+FAILED test_main.py::test_isósceles[test_input1] - AssertionError: assert 'Is...
+FAILED test_main.py::test_isósceles[test_input2] - AssertionError: assert 'Is...
+========================= 2 failed, 10 passed in 0.05s =========================
