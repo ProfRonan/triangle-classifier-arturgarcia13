@@ -5,7 +5,7 @@ ladoC = int(input("Digite a medida do lado C: "))
 testeTri = ladoA + ladoB > ladoC and ladoA + ladoC > ladoB and ladoB + ladoC > ladoA
 
 triEqui = ladoA == ladoB and ladoB == ladoC
-triIsos = ladoA == ladoB or ladoB == ladoC or ladoA == ladoC and ladoB != ladoC or ladoC != ladoA or ladoA != ladoB
+triIsos = (ladoA == ladoB or ladoB == ladoC or ladoA == ladoC) and (ladoB != ladoC or ladoC != ladoA or ladoA != ladoB)
 triEsc = ladoA != ladoB and ladoB != ladoC and ladoC != ladoA
 
 if testeTri is True :
